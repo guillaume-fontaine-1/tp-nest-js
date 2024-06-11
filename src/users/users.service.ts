@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
-import { CreateUserDto } from 'src/dto/create-user.dto';
 import { transformDtoToEntity } from 'src/utils/transform-dto-to-entity.util';
+import { UserDto } from 'src/dto/user.dto';
 
 @Injectable()
 export class UsersService {
@@ -24,7 +24,7 @@ export class UsersService {
     return this.usersRepository.findOne({ where: { username } });
   }
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: UserDto): Promise<User> {
     const user = transformDtoToEntity(createUserDto, User);
     user.role = "visiteur"
     return this.usersRepository.save(user);
