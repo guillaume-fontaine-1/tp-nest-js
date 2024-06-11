@@ -2,6 +2,7 @@ import { Controller, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import { CreateUserDto } from 'src/dto/create-user.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -10,7 +11,7 @@ export class AuthController {
 
   @Post('register')
   @ApiOperation({ summary: 'Register a new user' })
-  async register(@Body() createUserDto) {
+  async register(@Body() createUserDto: CreateUserDto) {
     return this.authService.register(createUserDto);
   }
 

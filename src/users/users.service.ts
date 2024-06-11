@@ -26,6 +26,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = transformDtoToEntity(createUserDto, User);
+    user.role = "visiteur"
     return this.usersRepository.save(user);
   }
 
